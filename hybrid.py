@@ -948,7 +948,7 @@ def comparisons():
               'HYB': 'Y',  # whether to include our hybrid method
               'DYN_dlg_iter': 1, # iteration for all but the first layer, taken to be 2000 in the paper
               'DYN_dlg_iter_1st': 1, # iteration for reconstructing the first layer, taken to be 10000 in the paper
-              'target_model': 'cnn3_c1', # target model architecture
+              'target_model': 'cnn3_c1', # target model architecture, see targets.py for available models
               'datapoint_index': 3, # choose which image to use for the comparison
               'note': '' # additional note for the output file (optional)
               }
