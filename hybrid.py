@@ -937,20 +937,20 @@ def square_norm(u, v, x):
 
 def comparisons():
     import torch
-    output_directory = '/home/cangxiong/projects/dp/experiments/Grad_invert_attacks/output/' # path for saving the plots
+    output_path = '/home/cangxiong/projects/dp/experiments/Grad_invert_attacks/output/' # path for saving the plots
     data_path = '/mnt/storage/datasets/cifar10/' # path to the CIFAR10 dataset; will be downloaded if it does not exist
     # 'Y/N' indicates whether to include the corresponding model in the comparison
-    config = {'DLG': 'Y',
-              'DLG_iter': 1, # 300
-              'Geiping': 'Y',
-              'Geiping_iter': 1, # 4800
-              'RGAP': 'Y',
-              'HYB': 'Y',
+    config = {'DLG': 'Y', # whether to include DLG method
+              'DLG_iter': 1, # number of iterations for DLG, default 300
+              'Geiping': 'Y', # whether to include Geiping et al
+              'Geiping_iter': 1, # number of iterations for Geiping et al, default 4800
+              'RGAP': 'Y', # whether to include RGAP
+              'HYB': 'Y',  # whether to include our hybrid method
               'DYN_dlg_iter': 1, # iteration for all but the first layer, taken to be 2000 in the paper
               'DYN_dlg_iter_1st': 1, # iteration for reconstructing the first layer, taken to be 10000 in the paper
               'target_model': 'cnn3_c1', # target model architecture
-              'datapoint_index': 3,
-              'note': ''
+              'datapoint_index': 3, # choose which image to use for the comparison
+              'note': '' # additional note for the output file (optional)
               }
 
     if torch.cuda.is_available():
@@ -1008,7 +1008,7 @@ def comparisons():
 
     print(" ----- Test name is : {} ----- ".format(config['target_model'] + '_' + str(config['datapoint_index']) + config['note']))
     plot_compare(orig_img=image, rgap_recon=rgap_recon, dlg_recon=dlg_recon, hybrid_recon=hybrid_recon,
-                 geiping_recon=geiping_recon, root_directory=output_directory,
+                 geiping_recon=geiping_recon, root_directory=output_path,
                  test_name=config['target_model'] + '_' + str(config['datapoint_index']) + config['note'])
 
 
